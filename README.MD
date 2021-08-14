@@ -1,0 +1,1 @@
+a simple application to manage basic deployments

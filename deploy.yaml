@@ -1,0 +1,13 @@
+- 
+    name: api
+    exec:
+      - name: "create a html file"
+        command: "touch {name}"
+        path: "/var/www/html"
+        args:
+        -
+          key: "name"
+          value: "a.html"
+        pass_on_error: false
+
+  
