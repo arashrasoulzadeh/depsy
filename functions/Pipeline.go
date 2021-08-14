@@ -2,7 +2,6 @@ package functions
 
 import (
 	"arashrasoulzadeh/deepzy/structs"
-	"fmt"
 	"log"
 	"os/exec"
 	"strings"
@@ -16,23 +15,23 @@ func Execute(config structs.Config) {
 
 	for i := 0; i < len(config); i++ {
 
-		fmt.Printf("STEP %s : \n", blue(strings.ToUpper(config[i].Name)))
+		log.Printf("STEP %s : \n", blue(strings.ToUpper(config[i].Name)))
 		if config[i].Become {
-
-			fmt.Printf("\t%s\t", green(strings.ToUpper("ROOT CHECK")))
-			if getProcessOwner() == "root" {
+			log.Printf("\t%s\t", green(strings.ToUpper("ROOT CHECK")))
+			if strings.Compare(getProcessOwner(), "root") == 0 {
 				StepPass()
 			} else {
 				StepError()
+				StepBreak("YOU ARE NOT SUDOER")
 			}
-			fmt.Println()
+			log.Println()
 		}
 		for s := 0; s < len(config[i].Exec); s++ {
 			Runner(config[i].Exec[s])
 		}
 	}
-	fmt.Println("")
-	fmt.Println("DONE!")
+	log.Println("")
+	log.Println("DONE!")
 }
 
 func RenderCommand(cmd string, args []structs.ExecArgs) string {
@@ -46,8 +45,8 @@ func RenderCommand(cmd string, args []structs.ExecArgs) string {
 func Runner(execstep structs.ExecStruct) {
 	green := color.New(color.FgGreen).SprintFunc()
 
-	fmt.Printf("\t%s", green(strings.ToUpper(execstep.Name)))
-	cmd := exec.Command("sh", "-c", execstep.Command)
+	log.Printf("\t%s", green(strings.ToUpper(execstep.Name)))
+	cmd := exec.Command("sh", "-c", RenderCommand(execstep.Command, execstep.Args))
 	cmd.Dir = execstep.Path
 
 	err := cmd.Run()
@@ -55,9 +54,7 @@ func Runner(execstep structs.ExecStruct) {
 	if err != nil {
 		if !execstep.PassOnError {
 			StepError()
-			fmt.Println()
-			log.Fatal(err)
-			fmt.Println("")
+			StepBreak(err)
 		} else {
 			StepError()
 		}

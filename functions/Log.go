@@ -1,16 +1,21 @@
 package functions
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/fatih/color"
 )
 
 func StepError() {
 	red := color.New(color.FgRed).SprintFunc()
-	fmt.Printf("\t%s", red("FAILED"))
+	log.Printf("\t⬆️%s", red("FAILED"))
 }
 func StepPass() {
 	green := color.New(color.FgGreen).SprintFunc()
-	fmt.Printf("\t%s", green("PASS"))
+	log.Printf("\t⬆️%s", green("PASS"))
+}
+func StepBreak(v ...interface{}) {
+	log.Println()
+	log.Fatal(v)
+	log.Println("")
 }
