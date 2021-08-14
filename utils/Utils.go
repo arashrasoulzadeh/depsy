@@ -2,6 +2,7 @@ package utils
 
 import (
 	. "arashrasoulzadeh/deepzy/logger"
+	"arashrasoulzadeh/deepzy/structs"
 	"os"
 	"os/exec"
 	"runtime"
@@ -30,4 +31,30 @@ func StringInSlice(a string, list []string) bool {
 		}
 	}
 	return false
+}
+func RenderCommand(cmd string, args []structs.ExecArgs) string {
+
+	for i := 0; i < len(args); i++ {
+		cmd = strings.ReplaceAll(cmd, "{"+args[i].Key+"}", args[i].Value)
+	}
+	return cmd
+}
+func RunCustomBashCommand(path string, pass_on_error bool, command string) {
+	cmd := exec.Command("bash", "-c", command)
+	cmd.Dir = path
+	err := cmd.Run()
+
+	if err != nil {
+		if !pass_on_error {
+			StepError()
+			StepBreak(err)
+		} else {
+			StepError()
+		}
+	} else {
+		StepPass()
+	}
+}
+func RunBashCommand(execstep structs.ExecStruct) {
+	RunCustomBashCommand(execstep.Path, execstep.PassOnError, RenderCommand(execstep.Command, execstep.Args))
 }

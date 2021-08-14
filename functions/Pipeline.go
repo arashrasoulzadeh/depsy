@@ -8,7 +8,6 @@ import (
 	"arashrasoulzadeh/deepzy/types"
 
 	"log"
-	"os/exec"
 	"strings"
 
 	"github.com/fatih/color"
@@ -47,31 +46,8 @@ func Execute(config structs.Config) {
 	log.Println("DONE!")
 }
 
-func RenderCommand(cmd string, args []structs.ExecArgs) string {
-
-	for i := 0; i < len(args); i++ {
-		cmd = strings.ReplaceAll(cmd, "{"+args[i].Key+"}", args[i].Value)
-	}
-	return cmd
-}
-
 func Runner(execstep structs.ExecStruct) {
 	green := color.New(color.FgGreen).SprintFunc()
-
 	log.Printf("\t%s", green(strings.ToUpper(execstep.Name)))
-	cmd := exec.Command("sh", "-c", RenderCommand(execstep.Command, execstep.Args))
-	cmd.Dir = execstep.Path
-
-	err := cmd.Run()
-
-	if err != nil {
-		if !execstep.PassOnError {
-			StepError()
-			StepBreak(err)
-		} else {
-			StepError()
-		}
-	} else {
-		StepPass()
-	}
+	utils.RunBashCommand(execstep)
 }

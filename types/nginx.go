@@ -1,8 +1,9 @@
 package types
 
 import (
+	"arashrasoulzadeh/deepzy/logger"
 	"arashrasoulzadeh/deepzy/structs"
-	. "arashrasoulzadeh/deepzy/utils"
+	"arashrasoulzadeh/deepzy/utils"
 
 	"log"
 	"strings"
@@ -12,9 +13,12 @@ import (
 
 func RunNginx(execstruct structs.ExecStruct) {
 	green := color.New(color.FgGreen).SprintFunc()
+	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
 
-	if StringInSlice(execstruct.Command, []string{"restart", "reload", "stop", "start"}) {
-		log.Printf("\t%s", green(strings.ToUpper("NGINX "+execstruct.Command)))
+	if utils.StringInSlice(execstruct.Command, []string{"restart", "reload", "stop", "start"}) {
+		log.Printf("\t%s", green(strings.ToUpper(execstruct.Command)))
+	} else {
+		logger.StepError()
 	}
 
 }
