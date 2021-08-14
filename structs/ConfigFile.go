@@ -12,6 +12,7 @@ type ExecStruct struct {
 	PassOnError bool       `yaml:"pass_on_error"`
 }
 type Config []struct {
-	Name string       `yaml:"name"`
-	Exec []ExecStruct `yaml:"exec"`
+	Name   string       `yaml:"name"`
+	Become bool         `yaml:"become"`
+	Exec   []ExecStruct `yaml:"exec"`
 }

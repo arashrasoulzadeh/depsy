@@ -12,9 +12,21 @@ import (
 
 func Execute(config structs.Config) {
 	blue := color.New(color.FgBlue).SprintFunc()
+	green := color.New(color.FgGreen).SprintFunc()
 
 	for i := 0; i < len(config); i++ {
+
 		fmt.Printf("STEP %s : \n", blue(strings.ToUpper(config[i].Name)))
+		if config[i].Become {
+
+			fmt.Printf("\t%s\t", green(strings.ToUpper("ROOT CHECK")))
+			if getProcessOwner() == "root" {
+				StepPass()
+			} else {
+				StepError()
+			}
+			fmt.Println()
+		}
 		for s := 0; s < len(config[i].Exec); s++ {
 			Runner(config[i].Exec[s])
 		}
@@ -34,16 +46,16 @@ func RenderCommand(cmd string, args []structs.ExecArgs) string {
 func Runner(execstep structs.ExecStruct) {
 	green := color.New(color.FgGreen).SprintFunc()
 
-	fmt.Printf("\t%s:", green(strings.ToUpper(execstep.Name)))
-	cmd := exec.Command(execstep.Command)
+	fmt.Printf("\t%s", green(strings.ToUpper(execstep.Name)))
+	cmd := exec.Command("sh", "-c", execstep.Command)
 	cmd.Dir = execstep.Path
-	fmt.Println(RenderCommand(execstep.Command, execstep.Args))
 
 	err := cmd.Run()
 
 	if err != nil {
 		if !execstep.PassOnError {
-			fmt.Println("")
+			StepError()
+			fmt.Println()
 			log.Fatal(err)
 			fmt.Println("")
 		} else {
