@@ -1,7 +1,12 @@
 package functions
 
 import (
+	. "arashrasoulzadeh/deepzy/logger"
+	"arashrasoulzadeh/deepzy/utils"
+
 	"arashrasoulzadeh/deepzy/structs"
+	"arashrasoulzadeh/deepzy/types"
+
 	"log"
 	"os/exec"
 	"strings"
@@ -18,7 +23,7 @@ func Execute(config structs.Config) {
 		log.Printf("STEP %s : \n", blue(strings.ToUpper(config[i].Name)))
 		if config[i].Become {
 			log.Printf("\t%s\t", green(strings.ToUpper("ROOT CHECK")))
-			if strings.Compare(getProcessOwner(), "root") == 0 {
+			if strings.Compare(utils.GetProcessOwner(), "root") == 0 {
 				StepPass()
 			} else {
 				StepError()
@@ -27,8 +32,14 @@ func Execute(config structs.Config) {
 			log.Println()
 		}
 		for s := 0; s < len(config[i].Exec); s++ {
-			Runner(config[i].Exec[s])
-			log.Println()
+			switch config[i].Exec[s].Type {
+			case "bash":
+				Runner(config[i].Exec[s])
+				log.Println()
+			case "nginx":
+				types.RunNginx(config[i].Exec[s])
+				log.Println()
+			}
 
 		}
 	}

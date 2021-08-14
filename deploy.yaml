@@ -2,6 +2,7 @@
   become: true
   exec:
     - name: "create a html file"
+      type: "bash"
       command: "touch {name}"
       path: "/var/www/html"
       args:
@@ -9,4 +10,5 @@
           value: "a.html"
       pass_on_error: false
     - name: "restart nginx"
-      command: "systemctl restart nginx"
+      type: nginx
+      command: "restart"

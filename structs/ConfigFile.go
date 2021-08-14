@@ -6,6 +6,7 @@ type ExecArgs struct {
 }
 type ExecStruct struct {
 	Name        string     `yaml:"name"`
+	Type        string     `yaml:"type"`
 	Command     string     `yaml:"command"`
 	Path        string     `yaml:"path"`
 	Args        []ExecArgs `yaml:"args"`
