@@ -8,3 +8,5 @@
         - key: "name"
           value: "a.html"
       pass_on_error: false
+    - name: "restart nginx"
+      command: "systemctl restart nginx"

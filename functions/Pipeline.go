@@ -28,6 +28,8 @@ func Execute(config structs.Config) {
 		}
 		for s := 0; s < len(config[i].Exec); s++ {
 			Runner(config[i].Exec[s])
+			log.Println()
+
 		}
 	}
 	log.Println("")
