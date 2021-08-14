@@ -17,6 +17,7 @@ func RunNginx(execstruct structs.ExecStruct) {
 
 	if utils.StringInSlice(execstruct.Command, []string{"restart", "reload", "stop", "start"}) {
 		log.Printf("\t%s", green(strings.ToUpper(execstruct.Command)))
+		utils.RunCustomBashCommand("/", execstruct.PassOnError, "systemctl "+execstruct.Command+" nginx")
 	} else {
 		logger.StepError()
 	}

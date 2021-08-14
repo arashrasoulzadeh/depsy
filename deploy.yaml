@@ -11,4 +11,4 @@
       pass_on_error: false
     - name: "restart nginx"
       type: nginx
-      command: "restart"
+      command: "reload"
