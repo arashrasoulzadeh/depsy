@@ -12,6 +12,6 @@
     - name: "restart nginx"
       type: nginx
       command: "reload"
-    - name: "restart mysql"
-      type: mysql
-      command: "reload"
+    - name: "restart maria"
+      type: maria
+      command: "restart"

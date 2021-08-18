@@ -9,13 +9,13 @@ import (
 	"strings"
 )
 
-func RunMysql(execstruct structs.ExecStruct){
+func RunMaria(execstruct structs.ExecStruct){
 	green := color.New(color.FgGreen).SprintFunc()
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
 
 	if utils.StringInSlice(execstruct.Command, []string{"restart", "stop", "start"}) {
 		log.Printf("\t%s", green(strings.ToUpper(execstruct.Command)))
-		utils.RunCustomBashCommand("/", execstruct.PassOnError, "systemctl "+execstruct.Command+" mysql")
+		utils.RunCustomBashCommand("/", execstruct.PassOnError, "systemctl "+execstruct.Command+" mariadb")
 	} else {
 		logger.StepError()
 	}
