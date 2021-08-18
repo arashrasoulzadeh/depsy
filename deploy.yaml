@@ -1,17 +1,26 @@
 - name: api
   become: true
   exec:
-    - name: "create a html file"
-      type: "bash"
-      command: "touch {name}"
-      path: "/var/www/html"
-      args:
-        - key: "name"
-          value: "a.html"
-      pass_on_error: false
-    - name: "restart nginx"
-      type: nginx
-      command: "reload"
-    - name: "restart maria"
-      type: maria
-      command: "restart"
+    - name: "create a new folder"
+      type: "folder"
+      command: "create"
+      path: "/var/www/html/test"
+      pass_on_error: true
+    - name: "delete the folder"
+      type: "folder"
+      command: "force_delete"
+      path: "/var/www/html/test"
+#    - name: "create a html file"
+#      type: "bash"
+#      command: "touch {name}"
+#      path: "/var/www/html"
+#      args:
+#        - key: "name"
+#          value: "a.html"
+#      pass_on_error: false
+#    - name: "restart nginx"
+#      type: nginx
+#      command: "reload"
+#    - name: "restart maria"
+#      type: maria
+#      command: "restart"

@@ -42,6 +42,13 @@ func Execute(config structs.Config) {
 			case "mysql":
 				types.RunMysql(config[i].Exec[s])
 				log.Println()
+			case "maria":
+				types.RunMaria(config[i].Exec[s])
+				log.Println()
+			case "folder":
+				types.RunFolder(config[i].Exec[s])
+				log.Println()
+
 			}
 
 		}
