@@ -49,7 +49,7 @@ func Execute() {
 		log.Println(err)
 		os.Exit(1)
 	}
-	str := functions.ReadFileToString(cfgFile)
+	str,_ := functions.ReadFileToString(cfgFile)
 	config := structs.Config{}
 	err := yaml.Unmarshal([]byte(str), &config)
 	if err != nil {

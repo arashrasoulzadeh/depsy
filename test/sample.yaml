@@ -1,0 +1,8 @@
+- name: api
+  become: true
+  exec:
+    - name: "create a new folder"
+      type: "folder"
+      command: "create"
+      path: "/var/www/html/test"
+      pass_on_error: true
