@@ -3,6 +3,7 @@ package utils
 import (
 	. "arashrasoulzadeh/deepzy/logger"
 	"arashrasoulzadeh/deepzy/structs"
+	"fmt"
 	"os"
 	"os/exec"
 	"runtime"
@@ -42,11 +43,12 @@ func RenderCommand(cmd string, args []structs.ExecArgs) string {
 func RunCustomBashCommand(path string, pass_on_error bool, command string) {
 	cmd := exec.Command("bash", "-c", command)
 	cmd.Dir = path
-	err := cmd.Run()
+	output, err := cmd.CombinedOutput()
 
 	if err != nil {
 		if !pass_on_error {
 			StepError()
+			Log.Printf("%s => %s",fmt.Sprint(err),output)
 			StepBreak(err)
 		} else {
 			StepError()

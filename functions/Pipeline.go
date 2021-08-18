@@ -31,12 +31,16 @@ func Execute(config structs.Config) {
 			log.Println()
 		}
 		for s := 0; s < len(config[i].Exec); s++ {
+			Log.Printf("%s: %s ",config[i].Exec[s].Type,config[i].Exec[s].Command)
 			switch config[i].Exec[s].Type {
 			case "bash":
 				Runner(config[i].Exec[s])
 				log.Println()
 			case "nginx":
 				types.RunNginx(config[i].Exec[s])
+				log.Println()
+			case "mysql":
+				types.RunMysql(config[i].Exec[s])
 				log.Println()
 			}
 
