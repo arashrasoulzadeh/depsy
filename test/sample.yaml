@@ -1,7 +1,7 @@
 - name: api
   become: true
   exec:
-    - name: "create a new folder"
+    - name: "test"
       type: "folder"
       command: "create"
       path: "/var/www/html/test"
