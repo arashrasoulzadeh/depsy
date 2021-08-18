@@ -1,5 +1,0 @@
-2021/08/18 22:18:43 Log.go:37: LogFile : error.log
-2021/08/18 22:18:43 Pipeline.go:34: bash: touch {name} 
-2021/08/18 22:18:43 Pipeline.go:34: nginx: reload 
-2021/08/18 22:18:43 Pipeline.go:34: mysql: reload 
-2021/08/18 22:18:43 Utils.go:51: exit status 3 => Failed to reload mysql.service: Job type reload is not applicable for unit mariadb.service.
