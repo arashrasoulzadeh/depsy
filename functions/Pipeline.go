@@ -25,7 +25,7 @@ func Execute(config structs.Config) {
 			if strings.Compare(utils.GetProcessOwner(), "root") == 0 {
 				StepPass()
 			} else {
-				StepError()
+				StepError("SUDO")
 				StepBreak("YOU ARE NOT SUDOER")
 			}
 			log.Println()

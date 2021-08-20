@@ -15,9 +15,9 @@ func runMysql(execstruct structs.ExecStruct) {
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
 
 	if utils.StringInSlice(execstruct.Command, []string{"restart", "stop", "start"}) {
-		log.Printf("\t%s", green(strings.ToUpper(execstruct.Command)))
+		logger.StepVerboseExec(execstruct)
 		utils.RunCustomBashCommand("/", execstruct.PassOnError, "systemctl "+execstruct.Command+" mysql")
 	} else {
-		logger.StepError()
+		logger.StepVerboseError(execstruct)
 	}
 }

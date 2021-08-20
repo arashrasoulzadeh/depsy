@@ -10,13 +10,17 @@ import (
 	"github.com/fatih/color"
 )
 
-func runMaria(execstruct structs.ExecStruct) {
+func runGit(execstruct structs.ExecStruct) {
 	green := color.New(color.FgGreen).SprintFunc()
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
 
-	if utils.StringInSlice(execstruct.Command, []string{"restart", "stop", "start"}) {
+	if utils.StringInSlice(execstruct.Command, []string{"pull", "push"}) {
 		logger.StepVerboseExec(execstruct)
-		utils.RunCustomBashCommand("/", execstruct.PassOnError, "systemctl "+execstruct.Command+" mariadb")
+		if execstruct.Command == "pull" {
+			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "git pull ")
+		} else if execstruct.Command == "reset" {
+			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "git pull ")
+		}
 	} else {
 		logger.StepVerboseError(execstruct)
 	}

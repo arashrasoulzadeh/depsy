@@ -1,10 +1,10 @@
 - name: api
-  become: true
+  become: false
   exec:
-    - name: "create a new folder"
-      type: "folder"
-      command: "create"
-      path: "/var/www/html/test"
+    - name: "pulling repository"
+      type: "git"
+      command: "pull"
+      path: ""
       pass_on_error: true
 #    - name: "create a new folder"
 #      type: "folder"

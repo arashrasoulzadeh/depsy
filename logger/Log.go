@@ -1,9 +1,11 @@
 package logger
 
 import (
+	"arashrasoulzadeh/deepzy/structs"
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/fatih/color"
 )
@@ -12,9 +14,22 @@ var (
 	Log *log.Logger
 )
 
-func StepError() {
+func StepVerboseError(reason structs.ExecStruct) {
 	red := color.New(color.FgRed).SprintFunc()
-	log.Printf("\t⬆️%s", red("FAILED"))
+	blue := color.New(color.FgBlue).SprintFunc()
+	yellow := color.New(color.FgYellow).SprintFunc()
+	log.Printf("\t⬆️%s %s %s %s %s", red("ERROR => "), "INVALID", blue(strings.ToUpper(reason.Type)), "COMMAND", yellow(strings.ToUpper(reason.Command)))
+}
+
+func StepVerboseExec(reason structs.ExecStruct) {
+	blue := color.New(color.FgBlue).SprintFunc()
+	yellow := color.New(color.FgYellow).SprintFunc()
+	log.Printf("\t⬆️%s %s ", blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(reason.Command)))
+}
+
+func StepError(reason string) {
+	red := color.New(color.FgRed).SprintFunc()
+	log.Printf("\t⬆️%s", red("ERROR => "+reason))
 }
 func StepPass() {
 	green := color.New(color.FgGreen).SprintFunc()

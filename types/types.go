@@ -24,6 +24,9 @@ func Run(e structs.ExecStruct) {
 	case "folder":
 		runFolder(e)
 		log.Println()
+	case "git":
+		runGit(e)
+		log.Println()
 	}
 
 }

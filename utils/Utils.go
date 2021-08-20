@@ -47,11 +47,11 @@ func RunCustomBashCommand(path string, pass_on_error bool, command string) {
 
 	if err != nil {
 		if !pass_on_error {
-			StepError()
+			StepError("pass on error is false")
 			Log.Printf("%s => %s",fmt.Sprint(err),output)
 			StepBreak(err)
 		} else {
-			StepError()
+			StepError("pass on error is on, passing")
 		}
 	} else {
 		StepPass()
