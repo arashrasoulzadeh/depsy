@@ -14,11 +14,11 @@ import (
 func runMaria(execstruct structs.ExecStruct, s *spinner.Spinner) {
 	green := color.New(color.FgGreen).SprintFunc()
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
-
-	if utils.StringInSlice(execstruct.Command, []string{"restart", "stop", "start"}) {
+	supportedCommands := []string{"restart", "stop", "start"}
+	if utils.StringInSlice(execstruct.Command, supportedCommands) {
 		logger.StepVerboseExec(execstruct)
 		utils.RunCustomBashCommand("/", execstruct.PassOnError, "systemctl "+execstruct.Command+" mariadb", s)
 	} else {
-		logger.StepVerboseError(execstruct, s)
+		logger.StepVerboseError(execstruct, s, supportedCommands)
 	}
 }

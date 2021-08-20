@@ -14,8 +14,8 @@ import (
 func runFolder(execstruct structs.ExecStruct, s *spinner.Spinner) {
 	green := color.New(color.FgGreen).SprintFunc()
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
-
-	if utils.StringInSlice(execstruct.Command, []string{"create", "delete", "force_delete"}) {
+	supportedCommands := []string{"create", "delete", "force_delete"}
+	if utils.StringInSlice(execstruct.Command, supportedCommands) {
 		logger.StepVerboseExec(execstruct)
 		if execstruct.Command == "create" {
 			utils.RunCustomBashCommand("/", execstruct.PassOnError, "mkdir "+execstruct.Path, s)
@@ -25,6 +25,6 @@ func runFolder(execstruct structs.ExecStruct, s *spinner.Spinner) {
 			utils.RunCustomBashCommand("/", execstruct.PassOnError, "rm -rf "+execstruct.Path, s)
 		}
 	} else {
-		logger.StepVerboseError(execstruct, s)
+		logger.StepVerboseError(execstruct, s, supportedCommands)
 	}
 }

@@ -13,15 +13,15 @@ import (
 func runGit(execstruct structs.ExecStruct, s *spinner.Spinner) {
 	green := color.New(color.FgGreen).SprintFunc()
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
-
-	if utils.StringInSlice(execstruct.Command, []string{"pull", "push"}) {
+	supportedCommands := []string{"pull", "push"}
+	if utils.StringInSlice(execstruct.Command, supportedCommands) {
 		logger.StepVerboseExec(execstruct)
 		if execstruct.Command == "pull" {
-			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "git pull ",s)
+			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "git pull ", s)
 		} else if execstruct.Command == "reset" {
 			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "git reset --hard ", s)
 		}
 	} else {
-		logger.StepVerboseError(execstruct,s)
+		logger.StepVerboseError(execstruct, s,supportedCommands)
 	}
 }

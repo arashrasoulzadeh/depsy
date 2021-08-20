@@ -60,6 +60,6 @@ func RunCustomBashCommand(path string, pass_on_error bool, command string, s *sp
 		StepPass()
 	}
 }
-func RunBashCommand(execstep structs.ExecStruct) {
-	RunCustomBashCommand(execstep.Path, execstep.PassOnError, RenderCommand(execstep.Command, execstep.Args), nil)
+func RunBashCommand(execstep structs.ExecStruct, s *spinner.Spinner) {
+	RunCustomBashCommand(execstep.Path, execstep.PassOnError, RenderCommand(execstep.Command, execstep.Args), s)
 }

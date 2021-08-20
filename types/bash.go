@@ -13,5 +13,5 @@ import (
 func runBash(execstep structs.ExecStruct, s *spinner.Spinner) {
 	green := color.New(color.FgGreen).SprintFunc()
 	log.Printf("\t%s", green(strings.ToUpper(execstep.Name)))
-	utils.RunBashCommand(execstep)
+	utils.RunBashCommand(execstep,s)
 }
