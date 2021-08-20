@@ -1,7 +1,7 @@
 - name: api
   become: false
   exec:
-    - name: "pulling repository"
+    - name: "installing packages"
       type: "npm"
       command: "install"
       path: ""

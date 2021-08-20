@@ -13,7 +13,7 @@ import (
 func runGit(execstruct structs.ExecStruct, s *spinner.Spinner) {
 	green := color.New(color.FgGreen).SprintFunc()
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
-	supportedCommands := []string{"pull", "push"}
+	supportedCommands := []string{"pull", "hard_reset"}
 	if utils.StringInSlice(execstruct.Command, supportedCommands) {
 		logger.StepVerboseExec(execstruct)
 		if execstruct.Command == "pull" {
