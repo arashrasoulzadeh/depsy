@@ -3,6 +3,7 @@ package logger
 import (
 	"arashrasoulzadeh/deepzy/structs"
 	"fmt"
+	"github.com/briandowns/spinner"
 	"log"
 	"os"
 	"strings"
@@ -14,7 +15,7 @@ var (
 	Log *log.Logger
 )
 
-func StepVerboseError(reason structs.ExecStruct) {
+func StepVerboseError(reason structs.ExecStruct, s *spinner.Spinner) {
 	red := color.New(color.FgRed).SprintFunc()
 	blue := color.New(color.FgBlue).SprintFunc()
 	yellow := color.New(color.FgYellow).SprintFunc()
@@ -32,7 +33,7 @@ func StepError(reason string) {
 	log.Printf("\t⬆️%s", red("ERROR => "+reason))
 }
 func StepPass() {
-	green := color.New(color.FgGreen).SprintFunc()
+ 	green := color.New(color.FgGreen).SprintFunc()
 	log.Printf("\t⬆️%s", green("PASS"))
 }
 func StepBreak(v ...interface{}) {

@@ -4,6 +4,7 @@ import (
 	. "arashrasoulzadeh/deepzy/logger"
 	"arashrasoulzadeh/deepzy/structs"
 	"fmt"
+	"github.com/briandowns/spinner"
 	"os"
 	"os/exec"
 	"runtime"
@@ -40,15 +41,17 @@ func RenderCommand(cmd string, args []structs.ExecArgs) string {
 	}
 	return cmd
 }
-func RunCustomBashCommand(path string, pass_on_error bool, command string) {
+func RunCustomBashCommand(path string, pass_on_error bool, command string, s *spinner.Spinner) {
 	cmd := exec.Command("bash", "-c", command)
 	cmd.Dir = path
 	output, err := cmd.CombinedOutput()
 
+	s.Stop()
+	fmt.Printf("\r")
 	if err != nil {
 		if !pass_on_error {
 			StepError("pass on error is false")
-			Log.Printf("%s => %s",fmt.Sprint(err),output)
+			Log.Printf("%s => %s", fmt.Sprint(err), output)
 			StepBreak(err)
 		} else {
 			StepError("pass on error is on, passing")
@@ -58,5 +61,5 @@ func RunCustomBashCommand(path string, pass_on_error bool, command string) {
 	}
 }
 func RunBashCommand(execstep structs.ExecStruct) {
-	RunCustomBashCommand(execstep.Path, execstep.PassOnError, RenderCommand(execstep.Command, execstep.Args))
+	RunCustomBashCommand(execstep.Path, execstep.PassOnError, RenderCommand(execstep.Command, execstep.Args), nil)
 }
