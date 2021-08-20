@@ -2,9 +2,16 @@
   become: false
   exec:
     - name: "pulling repository"
-      type: "pm2"
-      command: "restart_all"
+      type: "npm"
+      command: "install"
       path: ""
+      args:
+        - key: "package"
+          value: "sarafi"
+        - key: "package"
+          value: "underline"
+        - key: "package"
+          value: "vue"
       pass_on_error: false
 #    - name: "create a new folder"
 #      type: "folder"

@@ -35,5 +35,8 @@ func Run(e structs.ExecStruct) {
 	case "pm2":
 		runPm2(e, s)
 		log.Println()
+	case "npm":
+		runNpm(e, s)
+		log.Println()
 	}
 }
