@@ -4,12 +4,13 @@ import (
 	"arashrasoulzadeh/deepzy/logger"
 	"arashrasoulzadeh/deepzy/structs"
 	"arashrasoulzadeh/deepzy/utils"
-	"github.com/fatih/color"
 	"log"
 	"strings"
+
+	"github.com/fatih/color"
 )
 
-func RunMysql(execstruct structs.ExecStruct){
+func runMysql(execstruct structs.ExecStruct) {
 	green := color.New(color.FgGreen).SprintFunc()
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
 

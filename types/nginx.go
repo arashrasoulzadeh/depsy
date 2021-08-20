@@ -11,7 +11,7 @@ import (
 	"github.com/fatih/color"
 )
 
-func RunNginx(execstruct structs.ExecStruct) {
+func runNginx(execstruct structs.ExecStruct) {
 	green := color.New(color.FgGreen).SprintFunc()
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
 
