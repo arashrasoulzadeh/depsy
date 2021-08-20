@@ -3,9 +3,9 @@
   exec:
     - name: "pulling repository"
       type: "pm2"
-      command: "restart all"
+      command: "restart_all"
       path: ""
-      pass_on_error: true
+      pass_on_error: false
 #    - name: "create a new folder"
 #      type: "folder"
 #      command: "create"
