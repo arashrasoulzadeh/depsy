@@ -2,8 +2,8 @@
   become: false
   exec:
     - name: "pulling repository"
-      type: "git"
-      command: "pull"
+      type: "pm2"
+      command: "restart all"
       path: ""
       pass_on_error: true
 #    - name: "create a new folder"
