@@ -31,34 +31,10 @@ func Execute(config structs.Config) {
 			log.Println()
 		}
 		for s := 0; s < len(config[i].Exec); s++ {
-			Log.Printf("%s: %s ",config[i].Exec[s].Type,config[i].Exec[s].Command)
-			switch config[i].Exec[s].Type {
-			case "bash":
-				Runner(config[i].Exec[s])
-				log.Println()
-			case "nginx":
-				types.RunNginx(config[i].Exec[s])
-				log.Println()
-			case "mysql":
-				types.RunMysql(config[i].Exec[s])
-				log.Println()
-			case "maria":
-				types.RunMaria(config[i].Exec[s])
-				log.Println()
-			case "folder":
-				types.RunFolder(config[i].Exec[s])
-				log.Println()
-
-			}
-
+			Log.Printf("%s: %s ", config[i].Exec[s].Type, config[i].Exec[s].Command)
+			types.Run(config[i].Exec[s])
 		}
 	}
 	log.Println("")
 	log.Println("DONE!")
-}
-
-func Runner(execstep structs.ExecStruct) {
-	green := color.New(color.FgGreen).SprintFunc()
-	log.Printf("\t%s", green(strings.ToUpper(execstep.Name)))
-	utils.RunBashCommand(execstep)
 }
