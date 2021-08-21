@@ -2,7 +2,7 @@
   become: false
   exec:
     - name: "installing packages"
-      type: "npm"
+      type: "composer"
       command: "install"
       path: ""
       args:

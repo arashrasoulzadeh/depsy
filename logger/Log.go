@@ -19,22 +19,22 @@ func StepVerboseError(reason structs.ExecStruct, s *spinner.Spinner, commands []
 	red := color.New(color.FgRed).SprintFunc()
 	blue := color.New(color.FgBlue).SprintFunc()
 	yellow := color.New(color.FgYellow).SprintFunc()
-	log.Printf("\t⬆️%s INVALID %s COMMAND %s {%s}", red("ERROR => "), blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(reason.Command)), strings.ToUpper(strings.Join(commands,",")))
+	log.Printf("\t⬆️  %s INVALID %s COMMAND %s {%s}", red("ERROR => "), blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(reason.Command)), strings.ToUpper(strings.Join(commands,",")))
 }
 
 func StepVerboseExec(reason structs.ExecStruct) {
 	blue := color.New(color.FgBlue).SprintFunc()
 	yellow := color.New(color.FgYellow).SprintFunc()
-	log.Printf("\t⬆️%s %s ", blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(reason.Command)))
+	log.Printf("\t⬆  ️%s %s ", blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(reason.Command)))
 }
 
 func StepError(reason string) {
 	red := color.New(color.FgRed).SprintFunc()
-	log.Printf("\t⬆️%s", red("ERROR => "+reason))
+	log.Printf("\t⬆  ️%s", red("ERROR => "+reason))
 }
 func StepPass() {
 	green := color.New(color.FgGreen).SprintFunc()
-	log.Printf("\t⬆️%s", green("PASS"))
+	log.Printf( "\t⬆  ️%s", green("PASS"))
 }
 func StepBreak(v ...interface{}) {
 	defer fmt.Print("logger not initialized!")

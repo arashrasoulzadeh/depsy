@@ -38,5 +38,8 @@ func Run(e structs.ExecStruct) {
 	case "npm":
 		runNpm(e, s)
 		log.Println()
+	case "composer":
+		runComposer(e, s)
+		log.Println()
 	}
 }
