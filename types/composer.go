@@ -17,7 +17,7 @@ func runComposer(execstruct structs.ExecStruct, s *spinner.Spinner) {
 	if utils.StringInSlice(execstruct.Command, supportedCommands) {
 		logger.StepVerboseExec(execstruct)
 		if execstruct.Command == "install" {
-			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "composer pull ", s)
+			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "composer install ", s)
 		}
 	} else {
 		logger.StepVerboseError(execstruct, s, supportedCommands)
