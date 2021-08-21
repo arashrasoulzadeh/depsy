@@ -36,3 +36,8 @@ You may specify `pass_on_error: true` in each step that you want to be skipped i
 - [Nginx](DOCS/NGINX.MD)
 - [NPM](DOCS/NPM.MD)
 - [PM2](DOCS/PM2.MD)
+
+
+#### Contribution & Donation
+You are free to fork project and send me PR.
+You may also [Buy me a Coffee](https://dono.gg/arashrasoulzadeh)
