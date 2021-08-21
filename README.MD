@@ -29,6 +29,7 @@ You may specify `pass_on_error: true` in each step that you want to be skipped i
 #### Supported types:
 
 - [Bash](DOCS/BASH.MD)
+- [COMPOSER](DOCS/COMPOSER.MD)
 - [Folder](DOCS/FOLDER.MD)
 - [Git](DOCS/GIT.MD)
 - [Maria](DOCS/MARIA.MD)
