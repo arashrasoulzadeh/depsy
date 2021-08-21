@@ -1,6 +1,9 @@
 ## Depsy
 
-Deployment made easy
+Deployment made easy.
 
 
-Read full documentation [here](https://github.com/arashrasoulzadeh/depsy/README.MD)
+by [Arash Rasoulzadeh](https://meetarash.ir)
+
+
+Read full documentation [here](https://github.com/arashrasoulzadeh/depsy/blob/master/README.MD)
