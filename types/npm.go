@@ -26,6 +26,6 @@ func runNpm(execstruct structs.ExecStruct, s *spinner.Spinner) {
 			}
 		}
 	} else {
-		logger.StepVerboseError(execstruct, s, supportedCommands)
+		logger.StepVerboseError(execstruct.Command, execstruct, s, supportedCommands)
 	}
 }

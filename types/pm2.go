@@ -20,6 +20,6 @@ func runPm2(execstruct structs.ExecStruct, s *spinner.Spinner) {
 			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "pm2 restart all ", s)
 		}
 	} else {
-		logger.StepVerboseError(execstruct, s, supportedCommands)
+		logger.StepVerboseError(execstruct.Command, execstruct, s, supportedCommands)
 	}
 }

@@ -25,6 +25,6 @@ func runFolder(execstruct structs.ExecStruct, s *spinner.Spinner) {
 			utils.RunCustomBashCommand("/", execstruct.PassOnError, "rm -rf "+execstruct.Path, s)
 		}
 	} else {
-		logger.StepVerboseError(execstruct, s, supportedCommands)
+		logger.StepVerboseError(execstruct.Command, execstruct, s, supportedCommands)
 	}
 }

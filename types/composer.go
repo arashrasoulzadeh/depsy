@@ -20,6 +20,6 @@ func runComposer(execstruct structs.ExecStruct, s *spinner.Spinner) {
 			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "composer install ", s)
 		}
 	} else {
-		logger.StepVerboseError(execstruct, s, supportedCommands)
+		logger.StepVerboseError(execstruct.Command, execstruct, s, supportedCommands)
 	}
 }

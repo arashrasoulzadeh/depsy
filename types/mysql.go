@@ -19,6 +19,6 @@ func runMysql(execstruct structs.ExecStruct, s *spinner.Spinner) {
 		logger.StepVerboseExec(execstruct)
 		utils.RunCustomBashCommand("/", execstruct.PassOnError, "systemctl "+execstruct.Command+" mysql", s)
 	} else {
-		logger.StepVerboseError(execstruct, s, supportedCommands)
+		logger.StepVerboseError(execstruct.Command, execstruct, s, supportedCommands)
 	}
 }

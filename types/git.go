@@ -22,6 +22,6 @@ func runGit(execstruct structs.ExecStruct, s *spinner.Spinner) {
 			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "git reset --hard ", s)
 		}
 	} else {
-		logger.StepVerboseError(execstruct, s,supportedCommands)
+		logger.StepVerboseError(execstruct.Command, execstruct, s, supportedCommands)
 	}
 }
