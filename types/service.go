@@ -18,7 +18,7 @@ func runService(execstruct structs.ExecStruct, s *spinner.Spinner) {
 	supportedCommands := []string{"restart", "reload", "stop", "start"}
 	for _, i := range execstruct.Args {
 		if utils.StringInSlice(i.Key, supportedCommands) {
-			logger.StepVerboseExec(execstruct)
+			logger.StepVerboseExec(execstruct,i.Key)
 			//utils.RunCustomBashCommand("/", execstruct.PassOnError, "systemctl "+execstruct.Command+" nginx", s)
 		} else {
 			logger.StepVerboseError(i.Key, execstruct, s, supportedCommands)

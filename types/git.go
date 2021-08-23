@@ -15,7 +15,7 @@ func runGit(execstruct structs.ExecStruct, s *spinner.Spinner) {
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
 	supportedCommands := []string{"pull", "hard_reset"}
 	if utils.StringInSlice(execstruct.Command, supportedCommands) {
-		logger.StepVerboseExec(execstruct)
+		logger.StepVerboseExec(execstruct,execstruct.Command)
 		if execstruct.Command == "pull" {
 			utils.RunCustomBashCommand(execstruct.Path, execstruct.PassOnError, "git pull ", s)
 		} else if execstruct.Command == "reset" {

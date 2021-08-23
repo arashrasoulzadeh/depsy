@@ -16,7 +16,7 @@ func runFolder(execstruct structs.ExecStruct, s *spinner.Spinner) {
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
 	supportedCommands := []string{"create", "delete", "force_delete"}
 	if utils.StringInSlice(execstruct.Command, supportedCommands) {
-		logger.StepVerboseExec(execstruct)
+		logger.StepVerboseExec(execstruct,execstruct.Command)
 		if execstruct.Command == "create" {
 			utils.RunCustomBashCommand("/", execstruct.PassOnError, "mkdir "+execstruct.Path, s)
 		} else if execstruct.Command == "create" {

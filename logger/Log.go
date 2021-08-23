@@ -22,10 +22,10 @@ func StepVerboseError(command string, reason structs.ExecStruct, s *spinner.Spin
 	log.Printf("\t⬆️  %s INVALID %s COMMAND %s {%s}", red("ERROR => "), blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(command)), strings.ToUpper(strings.Join(commands, ",")))
 }
 
-func StepVerboseExec(reason structs.ExecStruct) {
+func StepVerboseExec(reason structs.ExecStruct,command string) {
 	blue := color.New(color.FgBlue).SprintFunc()
 	yellow := color.New(color.FgYellow).SprintFunc()
-	log.Printf("\t⬆  ️%s %s ", blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(reason.Command)))
+	log.Printf("\t⬆  ️%s %s ", blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(command)))
 }
 
 func StepError(reason string) {

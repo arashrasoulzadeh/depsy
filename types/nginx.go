@@ -17,7 +17,7 @@ func runNginx(execstruct structs.ExecStruct, s *spinner.Spinner) {
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
 	supportedCommands := []string{"restart", "reload", "stop", "start"}
 	if utils.StringInSlice(execstruct.Command, supportedCommands) {
-		logger.StepVerboseExec(execstruct)
+		logger.StepVerboseExec(execstruct,execstruct.Command)
 		utils.RunCustomBashCommand("/", execstruct.PassOnError, "systemctl "+execstruct.Command+" nginx", s)
 	} else {
 		logger.StepVerboseError(execstruct.Command, execstruct, s, supportedCommands)

@@ -15,7 +15,7 @@ func runNpm(execstruct structs.ExecStruct, s *spinner.Spinner) {
 	log.Printf("\t%s", green(strings.ToUpper(execstruct.Name)))
 	supportedCommands := []string{"install"}
 	if utils.StringInSlice(execstruct.Command, supportedCommands) {
-		logger.StepVerboseExec(execstruct)
+		logger.StepVerboseExec(execstruct,execstruct.Command)
 
 		if execstruct.Command == "install" {
 			for _, i := range execstruct.Args {
