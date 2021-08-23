@@ -8,6 +8,8 @@
       args:
         - key: "restart"
           value: "mysql"
+        - key: "reload"
+          value: "mysql"
       pass_on_error: false
 #    - name: "create a new folder"
 #      type: "folder"
