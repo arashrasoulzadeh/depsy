@@ -15,11 +15,11 @@ var (
 	Log *log.Logger
 )
 
-func StepVerboseError(reason structs.ExecStruct, s *spinner.Spinner, commands []string) {
+func StepVerboseError(command string, reason structs.ExecStruct, s *spinner.Spinner, commands []string) {
 	red := color.New(color.FgRed).SprintFunc()
 	blue := color.New(color.FgBlue).SprintFunc()
 	yellow := color.New(color.FgYellow).SprintFunc()
-	log.Printf("\t⬆️  %s INVALID %s COMMAND %s {%s}", red("ERROR => "), blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(reason.Command)), strings.ToUpper(strings.Join(commands,",")))
+	log.Printf("\t⬆️  %s INVALID %s COMMAND %s {%s}", red("ERROR => "), blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(command)), strings.ToUpper(strings.Join(commands, ",")))
 }
 
 func StepVerboseExec(reason structs.ExecStruct) {
@@ -34,7 +34,7 @@ func StepError(reason string) {
 }
 func StepPass() {
 	green := color.New(color.FgGreen).SprintFunc()
-	log.Printf( "\t⬆  ️%s", green("PASS"))
+	log.Printf("\t⬆  ️%s", green("PASS"))
 }
 func StepBreak(v ...interface{}) {
 	defer fmt.Print("logger not initialized!")

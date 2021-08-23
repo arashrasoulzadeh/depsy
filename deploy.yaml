@@ -1,17 +1,13 @@
 - name: api
   become: false
   exec:
-    - name: "installing packages"
-      type: "composer"
-      command: "install"
+    - name: "working on services"
+      type: "service"
+      command: "restart"
       path: ""
       args:
-        - key: "package"
-          value: "sarafi"
-        - key: "package"
-          value: "underline"
-        - key: "package"
-          value: "vue"
+        - key: "restart"
+          value: "mysql"
       pass_on_error: false
 #    - name: "create a new folder"
 #      type: "folder"

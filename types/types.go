@@ -41,5 +41,8 @@ func Run(e structs.ExecStruct) {
 	case "composer":
 		runComposer(e, s)
 		log.Println()
+	case "service":
+		runService(e, s)
+		log.Println()
 	}
 }
