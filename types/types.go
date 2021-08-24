@@ -44,5 +44,8 @@ func Run(e structs.ExecStruct) {
 	case "service":
 		runService(e, s)
 		log.Println()
+	case "httpd":
+		runHttpd(e, s)
+		log.Println()
 	}
 }
