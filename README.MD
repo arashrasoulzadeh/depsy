@@ -4,7 +4,7 @@
 Simple application to manage basic deployments
 
 #### Usage
-You need to create a deployment yaml file ([sample](deploy.yaml)). then run the binary file with `--config` flag to path of deployment file.
+You need to create a deployment yaml file ([sample](deploy.yaml)). then run the binary file with `--config` flag to `path` or `url` of deployment file.
 
 for example : 
 ```yaml
