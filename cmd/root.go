@@ -35,8 +35,8 @@ func Execute() {
 		log.Println(err)
 		os.Exit(1)
 	}
-	str,err_cfg_read := functions.ReadFileToString(cfgFile)
-	if err_cfg_read != nil{
+	str, errCfgRead := functions.ReadFileToString(cfgFile)
+	if errCfgRead != nil{
 		logger.StepBreak("Cannot load config file",cfgFile)
 	}
 	config := structs.Config{}
