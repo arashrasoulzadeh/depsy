@@ -7,21 +7,22 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
-	"strconv"
 	"strings"
 )
+
+const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 func ReadFileToString(path string) (string, error) {
 	logger.StepInfo("loading config from " + path)
 	if strings.HasPrefix(path, "http://") || strings.HasPrefix(path, "https://") {
 		logger.StepInfo("Downloading... " + path)
-		dlPath := "down_" + strconv.Itoa(rand.Int())
+		dlPath := "down_" + RandStringBytes(10) + ".yaml"
 		err := DownloadFile(dlPath, path)
 		if err != nil {
 			return "", err
 		}
 		path = dlPath
-		logger.StepInfo("Done Downloading " + path)
+		logger.StepInfo("Done Downloading => " + path)
 
 	}
 	b, err := ioutil.ReadFile(path) // just pass the file name
@@ -31,6 +32,13 @@ func ReadFileToString(path string) (string, error) {
 	str := string(b) // convert content to a 'string'
 
 	return str, err
+}
+func RandStringBytes(n int) string {
+	b := make([]byte, n)
+	for i := range b {
+		b[i] = letterBytes[rand.Intn(len(letterBytes))]
+	}
+	return string(b)
 }
 
 // DownloadFile will download a url to a local file. It's efficient because it will
