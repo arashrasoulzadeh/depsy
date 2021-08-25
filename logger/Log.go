@@ -45,6 +45,14 @@ func StepBreak(v ...interface{}) {
 	}
 }
 
+func StepInfo(message string) {
+ 	if message != "" {
+		log.Println(fmt.Sprintf("%s", message))
+		log.Println("")
+	}
+}
+
+
 func init() {
 	// set location of log file
 	var logpath = "error.log"

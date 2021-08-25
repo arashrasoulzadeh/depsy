@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"arashrasoulzadeh/deepzy/functions"
+	"arashrasoulzadeh/deepzy/logger"
 	"arashrasoulzadeh/deepzy/structs"
 	"log"
 	"os"
@@ -34,7 +35,10 @@ func Execute() {
 		log.Println(err)
 		os.Exit(1)
 	}
-	str,_ := functions.ReadFileToString(cfgFile)
+	str,err_cfg_read := functions.ReadFileToString(cfgFile)
+	if err_cfg_read != nil{
+		logger.StepBreak("Cannot load config file",cfgFile)
+	}
 	config := structs.Config{}
 	err := yaml.Unmarshal([]byte(str), &config)
 	if err != nil {
