@@ -16,4 +16,5 @@ type Config []struct {
 	Name   string       `yaml:"name"`
 	Become bool         `yaml:"become"`
 	Exec   []ExecStruct `yaml:"exec"`
+	Hook   string       `yaml:"hook"`
 }
