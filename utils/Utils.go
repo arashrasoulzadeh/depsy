@@ -4,12 +4,13 @@ import (
 	. "arashrasoulzadeh/deepzy/logger"
 	"arashrasoulzadeh/deepzy/structs"
 	"fmt"
-	"github.com/briandowns/spinner"
 	"os"
 	"os/exec"
 	"runtime"
 	"strconv"
 	"strings"
+
+	"github.com/briandowns/spinner"
 )
 
 func GetProcessOwner() string {
@@ -50,13 +51,16 @@ func RunCustomBashCommand(path string, pass_on_error bool, command string, s *sp
 	fmt.Printf("\r")
 	if err != nil {
 		if !pass_on_error {
+			go Hook(command, command, "error", 0)
 			StepError("pass on error is false")
 			Log.Printf("%s => %s", fmt.Sprint(err), output)
 			StepBreak(err)
 		} else {
+			go Hook(command, command, "error_but_passed", 3)
 			StepError("pass on error is on, passing")
 		}
 	} else {
+		go Hook(command, command, "pass", 1)
 		StepPass()
 	}
 }

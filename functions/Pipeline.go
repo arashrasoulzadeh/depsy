@@ -24,7 +24,9 @@ func Execute(config structs.Config) {
 			log.Printf("\t%s\t", green(strings.ToUpper("ROOT CHECK")))
 			if strings.Compare(utils.GetProcessOwner(), "root") == 0 {
 				StepPass()
+				go Hook(config[i].Hook, "check_root", "pass", 1)
 			} else {
+				go Hook(config[i].Hook, "check_root", "error", 0)
 				StepError("SUDO")
 				StepBreak("YOU ARE NOT SUDOER")
 			}
@@ -32,6 +34,7 @@ func Execute(config structs.Config) {
 		}
 		for s := 0; s < len(config[i].Exec); s++ {
 			Log.Printf("%s: %s ", config[i].Exec[s].Type, config[i].Exec[s].Command)
+			go Hook(config[i].Hook, config[i].Exec[s].Command, "start", 1)
 			types.Run(config[i].Exec[s])
 		}
 	}

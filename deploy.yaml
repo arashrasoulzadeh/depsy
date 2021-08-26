@@ -2,16 +2,15 @@
   become: false
   hook: http://localhost:8000
   exec:
-    - name: "working on services"
-      type: "service"
-      command: "restart"
-      path: ""
-      args:
-        - key: "restart"
-          value: "mysql"
-        - key: "reload"
-          value: "mysql"
-      pass_on_error: false
+    - name: "installing packages"
+      type: "composer"
+      command: "install"
+      path: "."
+    # - name: "working on services"
+    #   type: "service"
+    #   command: "restart"
+    #   path: ""
+    #   pass_on_error: false
 #    - name: "create a new folder"
 #      type: "folder"
 #      command: "create"
