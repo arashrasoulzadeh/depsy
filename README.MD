@@ -25,6 +25,17 @@ You need to specify `become : true` in each step that you want to be run only in
 You may specify `pass_on_error: true` in each step that you want to be skipped if an error occured. default if false.
 
 
+#### Hook Support 
+In each step, you can provide a hook `POST` url, the url will recieve following data when each step starts running:
+```json
+{
+  "step":"step name",
+  "status":"step status",
+  "code":1,
+}
+
+```
+Step codes are: 1 for pass,2 for error
 
 #### Supported types:
 
