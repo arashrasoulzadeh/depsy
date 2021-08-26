@@ -42,10 +42,14 @@ func RenderCommand(cmd string, args []structs.ExecArgs) string {
 	}
 	return cmd
 }
-func RunCustomBashCommand(path string, pass_on_error bool, command string, s *spinner.Spinner) {
+func ExecuteSystemCall(command string, path string) ([]byte, error) {
 	cmd := exec.Command("bash", "-c", command)
 	cmd.Dir = path
-	output, err := cmd.CombinedOutput()
+	return cmd.CombinedOutput()
+
+}
+func RunCustomBashCommand(path string, pass_on_error bool, command string, s *spinner.Spinner) {
+	output, err := ExecuteSystemCall(command, path)
 
 	s.Stop()
 	fmt.Printf("\r")

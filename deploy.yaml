@@ -5,7 +5,7 @@
     - name: "installing packages"
       type: "composer"
       command: "install"
-      path: "."
+      path: ""
     # - name: "working on services"
     #   type: "service"
     #   command: "restart"

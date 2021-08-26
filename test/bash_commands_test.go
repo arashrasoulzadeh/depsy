@@ -1,13 +1,19 @@
 package test
 
 import (
-	"arashrasoulzadeh/deepzy/functions"
+	"arashrasoulzadeh/deepzy/utils"
 	"testing"
 )
 
 func TestRunCustomBashCommand(t *testing.T) {
-	_, err := functions.ReadFileToString("sample.yaml")
+	_, err := utils.ExecuteSystemCall("bash -c ls", "")
 	if err != nil {
+		t.Error(err)
+	}
+}
+func TestRunCustomInvalidBashCommand(t *testing.T) {
+	_, err := utils.ExecuteSystemCall("bash -c someinvalidcommand", "")
+	if err == nil {
 		t.Error(err)
 	}
 }
