@@ -3,10 +3,14 @@ package logger
 import (
 	"arashrasoulzadeh/deepzy/structs"
 	"fmt"
-	"github.com/briandowns/spinner"
 	"log"
+	"net/http"
+	"net/url"
 	"os"
+	"strconv"
 	"strings"
+
+	"github.com/briandowns/spinner"
 
 	"github.com/fatih/color"
 )
@@ -22,7 +26,7 @@ func StepVerboseError(command string, reason structs.ExecStruct, s *spinner.Spin
 	log.Printf("\t⬆️  %s INVALID %s COMMAND %s {%s}", red("ERROR => "), blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(command)), strings.ToUpper(strings.Join(commands, ",")))
 }
 
-func StepVerboseExec(reason structs.ExecStruct,command string) {
+func StepVerboseExec(reason structs.ExecStruct, command string) {
 	blue := color.New(color.FgBlue).SprintFunc()
 	yellow := color.New(color.FgYellow).SprintFunc()
 	log.Printf("\t⬆  ️%s %s ", blue(strings.ToUpper(reason.Type)), yellow(strings.ToUpper(command)))
@@ -46,12 +50,21 @@ func StepBreak(v ...interface{}) {
 }
 
 func StepInfo(message string) {
- 	if message != "" {
+	if message != "" {
 		log.Println(fmt.Sprintf("%s", message))
 		log.Println("")
 	}
 }
 
+func Hook(hook string, step string, status string, code int) {
+	data := url.Values{
+		"step":   {step},
+		"status": {status},
+		"code":   {strconv.Itoa(code)},
+	}
+	http.PostForm(hook, data)
+
+}
 
 func init() {
 	// set location of log file

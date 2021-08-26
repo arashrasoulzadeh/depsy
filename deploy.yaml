@@ -1,5 +1,6 @@
 - name: api
   become: false
+  hook: http://localhost:8000
   exec:
     - name: "working on services"
       type: "service"

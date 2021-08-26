@@ -18,7 +18,7 @@ func Execute(config structs.Config) {
 	green := color.New(color.FgGreen).SprintFunc()
 
 	for i := 0; i < len(config); i++ {
-
+		go Hook(config[i].Hook, config[i].Name, "start", 1)
 		log.Printf("STEP %s : \n", blue(strings.ToUpper(config[i].Name)))
 		if config[i].Become {
 			log.Printf("\t%s\t", green(strings.ToUpper("ROOT CHECK")))
