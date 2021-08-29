@@ -46,6 +46,7 @@ Step codes are: 1 for pass,2 for error
 - [Maria](DOCS/MARIA.MD)
 - [Mysql](DOCS/MYSQL.MD)
 - [Nginx](DOCS/NGINX.MD)
+- [Nuxt](DOCS/NUXT.MD)
 - [NPM](DOCS/NPM.MD)
 - [PM2](DOCS/PM2.MD)
 - [Service](DOCS/SERVICE.MD)

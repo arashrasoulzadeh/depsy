@@ -2,9 +2,10 @@ package types
 
 import (
 	"arashrasoulzadeh/deepzy/structs"
-	"github.com/briandowns/spinner"
 	"log"
 	"time"
+
+	"github.com/briandowns/spinner"
 )
 
 type Runner func(structs.ExecStruct)
@@ -46,6 +47,9 @@ func Run(e structs.ExecStruct) {
 		log.Println()
 	case "httpd":
 		runHttpd(e, s)
+		log.Println()
+	case "nuxt":
+		runNuxt(e, s)
 		log.Println()
 	}
 }
