@@ -17,3 +17,9 @@ func TestRunCustomInvalidBashCommand(t *testing.T) {
 		t.Error(err)
 	}
 }
+func TestRunBashUnameCommand(t *testing.T) {
+	_, err := utils.ExecuteSystemCall("bash -c uname -a", "")
+	if err != nil {
+		t.Error(err)
+	}
+}
